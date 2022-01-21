@@ -62,14 +62,14 @@ const EditProduct = () => {
 
   const onSubmit = async () => {
     const productSendEdited = {
-      "id": id,
-      "nombre": nombre,
-      "referencia": referencia,
-      "precio": precio,
-      "peso": peso,
-      "categoria": categoria,
-      "stock": stock,
-      "fecha": fecha,
+      id: id,
+      nombre: nombre,
+      referencia: referencia,
+      precio: precio,
+      peso: peso,
+      categoria: categoria,
+      stock: stock,
+      fecha: fecha,
     };
 
     const promiseEditProduct = await editProduct(productSendEdited);
@@ -92,7 +92,7 @@ const EditProduct = () => {
   };
 
   return (
-    <div className="container" >
+    <div className="container">
       <NavigationBar />
       <div className="card">
         <div className="card-body">

@@ -45,7 +45,7 @@ const SellProduct = () => {
       const promiseGetProductId = await getProductbyId(idLocal);
       const productsIdPromise = await promiseGetProductId.json();
 
-      console.log(productsIdPromise)
+      console.log(productsIdPromise);
       setId(productsIdPromise.id);
       setNombre(productsIdPromise.nombre);
       setReferencia(productsIdPromise.referencia);
@@ -64,13 +64,12 @@ const SellProduct = () => {
         productsIdPromise.stock,
         productsIdPromise.fecha
       );
-
     };
     getFuncId();
   }, []);
 
   const rows = [
-    createData(nombre, referencia, precio, peso, categoria, stock, fecha)
+    createData(nombre, referencia, precio, peso, categoria, stock, fecha),
   ];
 
   const onSubmit = async (cantidad) => {
@@ -81,17 +80,17 @@ const SellProduct = () => {
         stock: amountTotal,
       };
 
-      const ingresos = precio * cantidad.cantidad
+      const ingresos = precio * cantidad.cantidad;
 
       const productSellAdd = {
         nombre: nombre,
         uds_vendidas: cantidad.cantidad,
         precio: precio,
-        ingresos: ingresos
+        ingresos: ingresos,
       };
       const promiseEditStock = await editProductSell(productEditStock);
       const promiseAddSell = await addSell(productSellAdd);
-      if (promiseEditStock.status === 200 && promiseAddSell.status === 200 ) {
+      if (promiseEditStock.status === 200 && promiseAddSell.status === 200) {
         Swal.fire({
           title: `Venta Realizada`,
           text: `Haz vendido ${cantidad.cantidad} Uds del producto ${nombre}`,
@@ -126,7 +125,6 @@ const SellProduct = () => {
                 aria-label="a dense table"
               >
                 <TableHead>
-
                   <TableRow>
                     <TableCell>Nombre Producto</TableCell>
                     <TableCell align="right">Referencia</TableCell>

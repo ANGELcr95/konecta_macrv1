@@ -1,11 +1,9 @@
-import React, { useState } from "react";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import deleteProducts from "../../services/deleteProducts";
 
 const TableProducts = ({ products, setFlag }) => {
   const navigate = useNavigate();
-
 
   const deleteProduct = async () => {
     const response = await Swal.fire({
@@ -28,7 +26,7 @@ const TableProducts = ({ products, setFlag }) => {
         title: "Producto Eliminado",
         icon: "success",
         confirmButtonText: "Aceptar",
-      })
+      });
     } else {
       Swal.fire({
         title: "Producto Eliminado",
@@ -37,7 +35,6 @@ const TableProducts = ({ products, setFlag }) => {
       });
     }
   };
-
 
   const editProduct = (products) => {
     const product = {
@@ -56,10 +53,9 @@ const TableProducts = ({ products, setFlag }) => {
   };
 
   const sellProduct = () => {
-    if(products.stock > 0){
-
+    if (products.stock > 0) {
       const sellproducts = {
-        id: products.id
+        id: products.id,
       };
       localStorage.setItem("sellproducts", JSON.stringify(sellproducts));
 
@@ -71,37 +67,37 @@ const TableProducts = ({ products, setFlag }) => {
         confirmButtonText: "Aceptar",
       });
     }
-  }
+  };
 
   return (
     <tr>
-        <>
-          <td>{products.nombre}</td>
-          <td>{products.referencia}</td>
-          <td>{products.precio}</td>
-          <td>{products.peso}</td>
-          <td>{products.categoria}</td>
-          <td>{products.stock}</td>
-          <td>{products.fecha}</td>
-          <td>
-            <button
-              onClick={() => editProduct(products)}
-              className="btn btn-info mt-2"
-            >
-              Editar
-            </button>
-          </td>
-          <td>
-            <button onClick={deleteProduct} className="btn btn-danger mt-2">
-              Eliminar
-            </button>
-          </td>
-          <td>
-            <button onClick={sellProduct} className="btn btn-success mt-2">
-              Vender
-            </button>
-          </td>
-        </>
+      <>
+        <td>{products.nombre}</td>
+        <td>{products.referencia}</td>
+        <td>{products.precio}</td>
+        <td>{products.peso}</td>
+        <td>{products.categoria}</td>
+        <td>{products.stock}</td>
+        <td>{products.fecha}</td>
+        <td>
+          <button
+            onClick={() => editProduct(products)}
+            className="btn btn-info mt-2"
+          >
+            Editar
+          </button>
+        </td>
+        <td>
+          <button onClick={deleteProduct} className="btn btn-danger mt-2">
+            Eliminar
+          </button>
+        </td>
+        <td>
+          <button onClick={sellProduct} className="btn btn-success mt-2">
+            Vender
+          </button>
+        </td>
+      </>
     </tr>
   );
 };

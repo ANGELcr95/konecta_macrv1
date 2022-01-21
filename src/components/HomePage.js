@@ -11,7 +11,7 @@ import Paper from "@mui/material/Paper";
 import getMaxSale from "../services/getMaxSale";
 import { useEffect, useState } from "react/cjs/react.development";
 import getMaxStock from "../services/getMaxStock";
-import "../styles/HomePage.css"
+import "../styles/HomePage.css";
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
@@ -29,7 +29,6 @@ const HomePage = () => {
   const [maxStock, setMaxStock] = useState(null);
   const [fechaStock, setFechaStock] = useState(null);
 
-
   useEffect(() => {
     const getFunc = async () => {
       const promiseGetProducts = await getProducts();
@@ -39,45 +38,43 @@ const HomePage = () => {
       const productMaxSale = await promiseGetMaxSale.json();
       const productMaxStock = await promiseGetMaxStock.json();
 
-      setFlag(false)
-      if(productsPromise.length !== 0){
-        setProducts(productsPromise)
+      setFlag(false);
+      if (productsPromise.length !== 0) {
+        setProducts(productsPromise);
       } else {
-        setProducts([])
+        setProducts([]);
       }
 
-      if(productMaxSale.length !== 0){
+      if (productMaxSale.length !== 0) {
         setNombre(productMaxSale[0].nombre);
         setUdsVendidas(productMaxSale[0].uds_vendidas);
         setPrecio(productMaxSale[0].precio);
         setIngresos(productMaxSale[0].ingresos);
-      } 
+      }
 
-      if(productMaxStock.length !==0 ){
-        setNombreStock(productMaxStock[0].nombre)
-        setReferenciaStock(productMaxStock[0].referencia)
-        setPrecioStock(productMaxStock[0].precio)
-        setPesoStock(productMaxStock[0].peso)
-        setCategoriaStock(productMaxStock[0].categoria)
-        setMaxStock(productMaxStock[0].stock)
-        setFechaStock(productMaxStock[0].fecha)
+      if (productMaxStock.length !== 0) {
+        setNombreStock(productMaxStock[0].nombre);
+        setReferenciaStock(productMaxStock[0].referencia);
+        setPrecioStock(productMaxStock[0].precio);
+        setPesoStock(productMaxStock[0].peso);
+        setCategoriaStock(productMaxStock[0].categoria);
+        setMaxStock(productMaxStock[0].stock);
+        setFechaStock(productMaxStock[0].fecha);
       } else {
-        setNombreStock(null)
-        setReferenciaStock(null)
-        setPrecioStock(null)
-        setPesoStock(null)
-        setCategoriaStock(null)
-        setMaxStock(null)
-        setFechaStock(null)
-        
+        setNombreStock(null);
+        setReferenciaStock(null);
+        setPrecioStock(null);
+        setPesoStock(null);
+        setCategoriaStock(null);
+        setMaxStock(null);
+        setFechaStock(null);
       }
     };
     getFunc();
   }, [flag]);
 
-
   const renderTableProducts = products.map((products) => (
-    <TableProducts key={products.id} products={products} setFlag={setFlag}/>
+    <TableProducts key={products.id} products={products} setFlag={setFlag} />
   ));
 
   return (
@@ -95,17 +92,17 @@ const HomePage = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-                <TableRow
-                  key={nombre}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell component="th" scope="row">
-                    {nombre}
-                  </TableCell>
-                  <TableCell align="right">{udsVendidas}</TableCell>
-                  <TableCell align="right">{precio}</TableCell>
-                  <TableCell align="right">{ingresos}</TableCell>
-                </TableRow>
+              <TableRow
+                key={nombre}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  {nombre}
+                </TableCell>
+                <TableCell align="right">{udsVendidas}</TableCell>
+                <TableCell align="right">{precio}</TableCell>
+                <TableCell align="right">{ingresos}</TableCell>
+              </TableRow>
             </TableBody>
           </Table>
         </TableContainer>
@@ -114,45 +111,36 @@ const HomePage = () => {
       <div className="mb-5">
         <h2>Producto con mayor Stock</h2>
         <TableContainer component={Paper}>
-              <Table
-                sx={{ minWidth: 650 }}
-                size="small"
-                aria-label="a dense table"
+          <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+            <TableHead>
+              <TableRow>
+                <TableCell>Nombre Producto</TableCell>
+                <TableCell align="right">Referencia</TableCell>
+                <TableCell align="right">Precio Unit&nbsp;($)</TableCell>
+                <TableCell align="right">Peso&nbsp;(kg)</TableCell>
+                <TableCell align="right">Categoria</TableCell>
+                <TableCell align="right">Stock&nbsp;(Uds)</TableCell>
+                <TableCell align="right">Fecha</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              <TableRow
+                key={nombreStock}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                <TableHead>
-
-                  <TableRow>
-                    <TableCell>Nombre Producto</TableCell>
-                    <TableCell align="right">Referencia</TableCell>
-                    <TableCell align="right">Precio Unit&nbsp;($)</TableCell>
-                    <TableCell align="right">Peso&nbsp;(kg)</TableCell>
-                    <TableCell align="right">Categoria</TableCell>
-                    <TableCell align="right">
-                      Stock&nbsp;(Uds)
-                    </TableCell>
-                    <TableCell align="right">Fecha</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                    <TableRow
-                      key={nombreStock}
-                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                    >
-                      <TableCell component="th" scope="row">
-                        {nombreStock}
-                      </TableCell>
-                      <TableCell align="right">{referenciaStock}</TableCell>
-                      <TableCell align="right">{precioStock}</TableCell>
-                      <TableCell align="right">{pesoStock}</TableCell>
-                      <TableCell align="right">{categoriaStock}</TableCell>
-                      <TableCell align="right">
-                        {maxStock}
-                      </TableCell>
-                      <TableCell align="right">{fechaStock}</TableCell>
-                    </TableRow>
-                </TableBody>
-              </Table>
-            </TableContainer>
+                <TableCell component="th" scope="row">
+                  {nombreStock}
+                </TableCell>
+                <TableCell align="right">{referenciaStock}</TableCell>
+                <TableCell align="right">{precioStock}</TableCell>
+                <TableCell align="right">{pesoStock}</TableCell>
+                <TableCell align="right">{categoriaStock}</TableCell>
+                <TableCell align="right">{maxStock}</TableCell>
+                <TableCell align="right">{fechaStock}</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </TableContainer>
       </div>
 
       <NavigationBar />
@@ -173,10 +161,11 @@ const HomePage = () => {
         </table>
       </div>
       <footer>
-        <p>@ Realizado por Ing. Miguel Angel Camacho para la empresa Konecta.</p>
+        <p>
+          @ Realizado por Ing. Miguel Angel Camacho para la empresa Konecta.
+        </p>
       </footer>
     </div>
-    
   );
 };
 

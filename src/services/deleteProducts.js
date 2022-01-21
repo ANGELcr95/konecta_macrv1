@@ -1,7 +1,6 @@
 import Config from "../Config";
 
 const deleteProducts = async (id) => {
-    console.log(id)
   const promiseDelete = await fetch(
     `${Config.ROUTE_API}/eliminar_producto.php?id=${id}`,
     {

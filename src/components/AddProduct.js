@@ -5,33 +5,29 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import addProduct from "../services/addProduct";
 
-
 const AddProduct = () => {
-    const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
-    const onSubmit = async (productSendAdd) => {
+  const onSubmit = async (productSendAdd) => {
+    const promiseAddProduct = await addProduct(productSendAdd);
 
-        // const putFunc = async () => {
-        const promiseAddProduct = await addProduct(productSendAdd);
-        // };
-        // putFunc();
-        if (promiseAddProduct.status === 200) {
-            reset()
+    if (promiseAddProduct.status === 200) {
+      reset();
 
-          Swal.fire({
-            title: "Producto Agregado",
-            icon: "success",
-            text: "Puedes seguir agragegando productos",
-            confirmButtonText: "Aceptar",
-          })
-        } else {
-          Swal.fire({
-            title: "Error, intentalo de nuevo",
-            icon: "warning",
-            confirmButtonText: "Aceptar",
-          });
-        }
-      };
+      Swal.fire({
+        title: "Producto Agregado",
+        icon: "success",
+        text: "Puedes seguir agragegando productos",
+        confirmButtonText: "Aceptar",
+      });
+    } else {
+      Swal.fire({
+        title: "Error, intentalo de nuevo",
+        icon: "warning",
+        confirmButtonText: "Aceptar",
+      });
+    }
+  };
 
   return (
     <div>
@@ -61,7 +57,6 @@ const AddProduct = () => {
                   placeholder="Referencia"
                   type="text"
                   id="referencia"
-
                   {...register("referencia", { required: true })}
                 />
               </div>
@@ -72,7 +67,6 @@ const AddProduct = () => {
                   placeholder="Precio"
                   type="number"
                   id="precio"
-
                   {...register("precio", { required: true })}
                 />
               </div>
@@ -83,7 +77,6 @@ const AddProduct = () => {
                   placeholder="Peso"
                   type="number"
                   id="peso"
-
                   {...register("peso", { required: true })}
                 />
               </div>
@@ -94,7 +87,6 @@ const AddProduct = () => {
                   placeholder="Categoria"
                   type="text"
                   id="categoria"
-
                   {...register("categoria", { required: true })}
                 />
               </div>
@@ -105,7 +97,6 @@ const AddProduct = () => {
                   placeholder="Stock"
                   type="number"
                   id="stock"
-
                   {...register("stock", { required: true })}
                 />
               </div>
