@@ -44,7 +44,7 @@ const SalesTotal = () => {
             </div>
             <div>
               <Link to="/" className="btn btn-primary mt-2">
-                Volver
+                Inicio
               </Link>
             </div>
           </div>

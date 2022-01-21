@@ -3,8 +3,9 @@ import {  useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import deleteProducts from "../../services/deleteProducts";
 
-const TableProducts = ({ products }) => {
-  const [removed, setRemoved] = useState(false);
+const TableProducts = ({ products, setFlag }) => {
+  const navigate = useNavigate();
+
 
   const deleteProduct = async () => {
     const response = await Swal.fire({
@@ -22,12 +23,12 @@ const TableProducts = ({ products }) => {
     }
     const promiseDeleteProducts = await deleteProducts(products.id);
     if (promiseDeleteProducts.status === 200) {
-      setRemoved(true);
+      setFlag(true);
       Swal.fire({
         title: "Producto Eliminado",
         icon: "success",
         confirmButtonText: "Aceptar",
-      });
+      })
     } else {
       Swal.fire({
         title: "Producto Eliminado",
@@ -37,7 +38,6 @@ const TableProducts = ({ products }) => {
     }
   };
 
-  const navigate = useNavigate();
 
   const editProduct = (products) => {
     const product = {
@@ -75,7 +75,6 @@ const TableProducts = ({ products }) => {
 
   return (
     <tr>
-      {!removed ? (
         <>
           <td>{products.nombre}</td>
           <td>{products.referencia}</td>
@@ -103,7 +102,6 @@ const TableProducts = ({ products }) => {
             </button>
           </td>
         </>
-      ) : null}
     </tr>
   );
 };

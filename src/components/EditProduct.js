@@ -92,7 +92,7 @@ const EditProduct = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container" >
       <NavigationBar />
       <div className="card">
         <div className="card-body">
@@ -184,7 +184,7 @@ const EditProduct = () => {
               </button>
               &nbsp;
               <Link to="/" className="btn btn-primary mt-2">
-                Volver
+                Inicio
               </Link>
             </div>
           </form>

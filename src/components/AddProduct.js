@@ -125,7 +125,7 @@ const AddProduct = () => {
                 </button>
                 &nbsp;
                 <Link to="/" className="btn btn-primary mt-2">
-                  Volver
+                  Inicio
                 </Link>
               </div>
             </form>

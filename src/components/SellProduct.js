@@ -1,4 +1,3 @@
-import React from "react";
 import NavigationBar from "./NavigationBar";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react/cjs/react.development";
@@ -46,6 +45,7 @@ const SellProduct = () => {
       const promiseGetProductId = await getProductbyId(idLocal);
       const productsIdPromise = await promiseGetProductId.json();
 
+      console.log(productsIdPromise)
       setId(productsIdPromise.id);
       setNombre(productsIdPromise.nombre);
       setReferencia(productsIdPromise.referencia);
@@ -70,7 +70,7 @@ const SellProduct = () => {
   }, []);
 
   const rows = [
-    createData(nombre, referencia, precio, peso, categoria, stock, fecha),
+    createData(nombre, referencia, precio, peso, categoria, stock, fecha)
   ];
 
   const onSubmit = async (cantidad) => {
@@ -126,10 +126,9 @@ const SellProduct = () => {
                 aria-label="a dense table"
               >
                 <TableHead>
-                  {/* createData(nombre, referencia, precio, peso, categoria, stock, fecha) */}
 
                   <TableRow>
-                    <TableCell>Nombre Productp</TableCell>
+                    <TableCell>Nombre Producto</TableCell>
                     <TableCell align="right">Referencia</TableCell>
                     <TableCell align="right">Precio Unit&nbsp;($)</TableCell>
                     <TableCell align="right">Peso&nbsp;(kg)</TableCell>
@@ -185,7 +184,7 @@ const SellProduct = () => {
                 </button>
                 &nbsp;
                 <Link to="/" className="btn btn-primary mt-2">
-                  Volver
+                  Inicio
                 </Link>
               </div>
             </form>
